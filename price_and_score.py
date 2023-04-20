@@ -7,7 +7,7 @@ from sklearn.linear_model import LinearRegression
 
 # read relevant data from the adjusted file
 # drop rows with missing values
-data = pandas.read_excel('adjusted_data.xlsx')
+data = pandas.read_csv('adjusted_data.csv')
 data.dropna(inplace=True, ignore_index=True)
 score = data['Score']
 price = data['Price']
