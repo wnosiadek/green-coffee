@@ -1,10 +1,8 @@
 # classify origins based on price and weight
 # use k-nearest neighbors classifier
-from typing import Any
 
 import pandas
 from matplotlib import pyplot
-from pandas import Series, DataFrame
 from sklearn.neighbors import KNeighborsClassifier
 
 # read relevant training data from the adjusted file
@@ -44,6 +42,7 @@ origins_map = {country: continent_id
 print({continent: continent_id for continent_id, continent
        in enumerate(['Africa', 'Asia & Oceania', 'Mexico & Central America', 'South America'])})
 # {'Africa': 0, 'Asia & Oceania': 1, 'Mexico & Central America': 2, 'South America': 3}
+
 
 # use the above to transform the data
 def simplify_origins(features, origins):
