@@ -15,11 +15,15 @@ programming language: **Python**, used libraries: **Pandas**, **Matplotlib**, **
 
 ### adjust_data.py
 
-module for adjusting data
+module for adjusting data before further analysis
 
-contains a function **adjust_data**, taking a csv file name as input and returning None
-
-**adjust_data** simplifies column labels, fixes data formatting and data types, then creates an adjusted csv file
+functions:
+- **adjust_data**
+  - takes a csv file name as input and returns None
+  - simplifies column labels, fixes data formatting and data types, then creates an adjusted csv file
+- **drop_duplicates**
+  - takes two csv file names as input and returns None
+  - drops data present in the training set from the testing set, then overwrites the latter file
 
 ### price_and_score.py
 
