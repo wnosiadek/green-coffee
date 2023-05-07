@@ -25,7 +25,7 @@ functions:
   - takes two csv file names as input and returns None
   - drops data present in the training set from the testing set, then overwrites the latter file
 
-### price_and_score.py
+### price_score.py
 
 script for investingating the dependence of green coffee price on its score
 
