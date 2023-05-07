@@ -23,7 +23,7 @@ if __name__ == '__main__':
     # {'Africa': 0, 'Asia & Oceania': 1, 'Mexico & Central America': 2, 'South America': 3}
 
 
-# use the above to transform the data
+# use the above to transform given data
 def simplify_origins(features, origins):
 
     # extract countries from coffee names
