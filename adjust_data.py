@@ -1,10 +1,13 @@
+# functions adjusting data for analysis
+
+import pandas
+
+
 def adjust_data(file_name):
 
   # read csv data
   # adjust the data where necessary
   # write the data to a new csv file
-
-  import pandas
 
   # read data from the provided file
   data = pandas.read_csv(file_name)
@@ -46,4 +49,24 @@ def adjust_data(file_name):
   data['Price'] = pandas.to_numeric(data['Price'])
 
   # write the data to a new file
-  data.to_csv('adjusted_' + file_name)
+  data.to_csv('adjusted_' + file_name, index=False)
+
+  
+def drop_duplicates(train_file_name, test_file_name):
+  
+  # read csv data for training and testing
+  # drop samples present in both sets from the testing set
+  # overwrite the testing csv data file
+
+  # read data from the provided files
+  train_data = pandas.read_csv(train_file_name)
+  test_data = pandas.read_csv(test_file_name)
+
+  # drop duplicated samples from the testing data
+  for index, sample in test_data['Coffee'].items():
+      if sample in train_data['Coffee'].values:
+          test_data = test_data.drop(index)
+  test_data = test_data.reset_index(drop=True)
+
+  # overwrite the testing data
+  test_data.to_csv(test_file_name, index=False)
