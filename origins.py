@@ -18,7 +18,7 @@ origins_map = {country: continent_id
 printable_origins_map = {continent: continent_id for continent_id, continent
                          in enumerate(['Africa', 'Asia & Oceania', 'Mexico & Central America', 'South America'])}
 
-if __name__ == 'main':
+if __name__ == '__main__':
     print(printable_origins_map)
     # {'Africa': 0, 'Asia & Oceania': 1, 'Mexico & Central America': 2, 'South America': 3}
 
