@@ -6,11 +6,16 @@ from matplotlib import pyplot
 from sklearn.linear_model import LinearRegression
 
 # read relevant data from the adjusted file
-# drop rows with missing values
 data = pandas.read_csv('adjusted_data.csv')
-data.dropna(inplace=True, ignore_index=True)
 score = data['Score']
 price = data['Price']
+# drop rows with missing values
+for index, missing in score.isna().items():
+    if missing:
+        score = score.drop(index)
+        price = price.drop(index)
+score = score.reset_index(drop=True)
+price = price.reset_index(drop=True)
 
 # plot the data
 pyplot.scatter(score, price)
