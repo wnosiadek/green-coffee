@@ -25,7 +25,7 @@ functions:
   - takes two csv file names (training and testing data) as input, returns None
   - drops data present in the training set from the testing set, then overwrites the latter file
 - **drop_missing**
-  - takes two related data frames or series as input, returns the same data structures
+  - takes two series or a series and a data frame as input, returns two series or a series and a data frame
   - removes rows with nans
 
 ### price_score.py
