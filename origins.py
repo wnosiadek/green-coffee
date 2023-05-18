@@ -2,6 +2,8 @@
 # take into account continents rather than countries
 # change alphabetical data into numerical data
 
+import adjust_data
+
 # possible continents
 africa = ['Burundi', 'Cameroon', "Côte d'Ivoire", 'Democratic Republic of Congo', 'Ethiopia', 'Guinea', 'Kenya',
           'Madagascar', 'Rwanda', 'Tanzania', 'Togo', 'Uganda']
@@ -37,12 +39,7 @@ def simplify_origins(features, origins):
 
     # map countries to appropriate ids
     origins = origins.map(origins_map)
-    # drop any mistakes
-    for index, mistake in origins.isna().items():
-        if mistake:
-            origins = origins.drop(index)
-            features = features.drop(index)
-    origins = origins.reset_index(drop=True)
-    features = features.reset_index(drop=True)
+    # drop any mistakes using adjust_data.py
+    origins, features = adjust_data.drop_missing(origins, features)
 
     return features, origins
