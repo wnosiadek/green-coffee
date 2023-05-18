@@ -2,6 +2,7 @@
 # use linear regression
 
 import pandas
+import adjust_data
 from matplotlib import pyplot
 from sklearn.linear_model import LinearRegression
 
@@ -9,13 +10,8 @@ from sklearn.linear_model import LinearRegression
 data = pandas.read_csv('adjusted_data.csv')
 score = data['Score']
 price = data['Price']
-# drop rows with missing values
-for index, missing in score.isna().items():
-    if missing:
-        score = score.drop(index)
-        price = price.drop(index)
-score = score.reset_index(drop=True)
-price = price.reset_index(drop=True)
+# drop rows with missing values using adjust_data.py
+score, price = adjust_data.drop_missing(score, price)
 
 # plot the data
 pyplot.scatter(score, price)
@@ -36,6 +32,9 @@ predicted_price = model.predict(score)
 a = model.coef_[0]
 b = model.intercept_
 r2 = model.score(score, price)
+print(f'y = {a:.0f}x + {b:.0f}\nR2 = {r2:.2f}')
+# y = 6x + -459
+# R2 = 0.48
 
 # plot the fitted model and its details
 pyplot.plot(score, predicted_price, color='black')
