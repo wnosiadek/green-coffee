@@ -2,6 +2,8 @@
 
 import pandas
 
+# adjusting data files prior to use
+
 
 def adjust_data(file_name):
 
@@ -70,3 +72,22 @@ def drop_duplicates(train_file_name, test_file_name):
 
   # overwrite the testing data
   test_data.to_csv(test_file_name, index=False)
+
+
+# adjusting data frames and series already in use
+
+
+def drop_missing(data_to_check, related_data):
+
+    # remove rows with nans from the data given
+    # reset indices
+
+    for index, missing in data_to_check.isna().items():
+        if missing:
+            data_to_check = data_to_check.drop(index)
+            related_data = related_data.drop(index)
+
+    data_to_check = data_to_check.reset_index(drop=True)
+    related_data = related_data.reset_index(drop=True)
+
+    return data_to_check, related_data
