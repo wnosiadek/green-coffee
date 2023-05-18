@@ -45,6 +45,12 @@ functions:
 
 ### origin_weight_price.py
 
-script for classifying green coffee origins based on its price and weight
+script for classifying green coffee origin based on its price and weight
 
-transforms the data using origins.py, visualizes the data, creates and fits a **K Nearest Neighbors Classifier** on the training set, tests the model on the testing set
+transforms the data using origins.py, visualizes the data, creates a **K Nearest Neighbors Classifier** and fits it on the training set, tests the model on the testing set
+
+### origin_profile.py
+
+script for classifying green coffee origin based on its sensory profile
+
+transforms the data using origins.py, vectorizes the sensory profiles using **Count Vectorizer** with **Nltk** library (tokenization and stemming), creates **Multinomial** and **Complement** **Naive Bayes Classifiers** and fits them on the training set, tests the model on the testing set
