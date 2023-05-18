@@ -4,7 +4,7 @@ data analysis / machine learning basics
 
 repository created for practicing basic data analysis and machine learning methods using an example of personal interest: green coffee
 
-programming language: **Python**, used libraries: **Pandas**, **Matplotlib**, **Scikit-learn**
+programming language: **Python**, used libraries: **Pandas**, **Matplotlib**, **Scikit-learn**, **Nltk**
 
 ## data files
 
@@ -15,7 +15,7 @@ programming language: **Python**, used libraries: **Pandas**, **Matplotlib**, **
 
 ### adjust_data.py
 
-module for adjusting data before further analysis
+module for adjusting data before or during analysis
 
 functions:
 - **adjust_data**
@@ -24,6 +24,9 @@ functions:
 - **drop_duplicates**
   - takes two csv file names (training and testing data) as input, returns None
   - drops data present in the training set from the testing set, then overwrites the latter file
+- **drop_missing**
+  - takes two related data frames or series as input, returns the same data structures
+  - removes rows with nans
 
 ### price_score.py
 
