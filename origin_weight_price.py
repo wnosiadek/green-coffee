@@ -25,6 +25,7 @@ test_features, test_origins = origins.simplify_origins(test_features, test_origi
 # print the mapping for reference
 print()
 print(origins.printable_origins_map)
+# {'Africa': 0, 'Asia & Oceania': 1, 'Mexico & Central America': 2, 'South America': 3}
 
 # plot the data
 pyplot.scatter('Weight', 'Price', data=train_features, c=train_origins, cmap='gist_rainbow')
@@ -54,3 +55,6 @@ print()
 print(f'True origins: {test_origins}')
 print(f'Predicted origins: {predicted_origins}')
 print(f'Accuracy: {accuracy:.2f}')
+# True origins: [3 3 3 3 3 2 2 2 3 0 0]
+# Predicted origins: [3. 3. 3. 3. 3. 2. 2. 2. 2. 0. 0.]
+# Accuracy: 0.91
