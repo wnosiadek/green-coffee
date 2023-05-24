@@ -1,7 +1,21 @@
-# simplify possible origins
-# take into account continents rather than countries
-# change alphabetical data into numerical data
+"""
+Module for simplifying possible coffee origins
 
+Requires installation of 'pandas'
+
+Functions
+---------
+simplify_origins
+    Takes a Series/Data Frame (selected features) and a Series (coffee names) as input, returns a Series/Data Frame
+    and a Series
+    Simplifies coffee names to countries, then to continents, then to continent IDs
+
+Notes
+-----
+For reference, print printable_origins_map (continent: continent_id dictionary)
+"""
+
+import pandas
 import adjust_data
 
 # possible continents
@@ -26,7 +40,25 @@ if __name__ == '__main__':
 
 
 # use the above to transform given data
-def simplify_origins(features, origins):
+def simplify_origins(features: pandas.Series | pandas.DataFrame,
+                     origins: pandas.Series)\
+        -> tuple[pandas.Series | pandas.DataFrame, pandas.Series]:
+    """
+    Simplifies possible origins - takes into account continents rather than countries, changes alphabetical data into
+    numerical data
+
+    Parameters
+    ----------
+    features: pandas.Series | pandas.DataFrame
+        Chosen coffee characteristics
+    origins: pandas.Series
+        Coffee names, including the countries of origin
+
+    Returns
+    -------
+    tuple[pandas.Series | pandas.DataFrame, pandas.Series]
+        Input characteristics and origins simplified with origins_map
+    """
 
     # extract countries from coffee names
     origins = origins.str.partition()[0]
