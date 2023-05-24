@@ -1,5 +1,11 @@
-# classify origins based on price and weight
-# use k-nearest neighbors classifier
+"""
+Script for classifying green coffee origin based on its price and weight
+
+Transforms the data using origins.py, visualizes the data, creates a K-Nearest Neighbors Classifier and fits it on the
+training set, tests the model on the testing set
+
+Requires installation of 'pandas', 'matplotlib', 'scikit-learn'
+"""
 
 import pandas
 import origins
