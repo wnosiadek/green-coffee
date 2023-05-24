@@ -1,5 +1,12 @@
-# classify origins based on sensory profiles
-# use naive bayes classifier (multinomial and complement) with count vectorizer and nltk
+"""
+Script for classifying green coffee origin based on its sensory profile
+
+Transforms the data using origins.py, vectorizes the sensory profiles using Count Vectorizer with Nltk library
+(tokenization and stemming), creates Multinomial and Complement Naive Bayes Classifiers and fits them on the training
+set, tests the models on the testing set
+
+Requires installation of 'pandas', 'nltk', 'scikit-learn'
+"""
 
 import pandas
 import adjust_data
@@ -37,19 +44,47 @@ print(origins.printable_origins_map)
 # {'Africa': 0, 'Asia & Oceania': 1, 'Mexico & Central America': 2, 'South America': 3}
 
 
-# define a tokenizer
-def tokenize(text):
+# define a stop words checker
+def check(token: str) -> bool:
+    """
+    Checks for stop words and punctuation
 
+    Parameters
+    ----------
+    token: str
+        Token to be checked
+
+    Returns
+    -------
+    bool
+        Whether the token is a stop word or a punctuation character
+    """
+
+    return token not in stopwords.words('english') and token not in string.punctuation
+
+
+# define a tokenizer
+def tokenize(text: str) -> list[str]:
+    """
+    Tokenizes the text, stems the words, removes stop words
+
+    Parameters
+    ----------
+    text: str
+        Text to be tokenized
+
+    Returns
+    -------
+    list[str]
+        Stemmed words of the input text
+    """
+    
     # tokenize given text
     text_tokens = wordpunct_tokenize(text)
 
     # stem the words using snowball stemmer
-    # remove stopwords and punctuation
+    # remove stopwords and punctuation using check
     stemmer = SnowballStemmer('english')
-
-    def check(token):
-        return token not in stopwords.words('english') and token not in string.punctuation
-
     text_tokens = [stemmer.stem(token) for token in text_tokens if check(token)]
 
     return text_tokens
