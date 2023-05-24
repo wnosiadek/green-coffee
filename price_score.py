@@ -1,5 +1,10 @@
-# investigate the dependence of green coffee price on its score
-# use linear regression
+"""
+Script for investigating the dependence of green coffee price on its score
+
+Creates a Linear Regression model for the data, visualizes the data and the results
+
+Requires installation of 'pandas', 'matplotlib', 'scikit-learn'
+"""
 
 import pandas
 import adjust_data
