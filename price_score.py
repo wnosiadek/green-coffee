@@ -11,11 +11,13 @@ import adjust_data
 from matplotlib import pyplot
 from sklearn.linear_model import LinearRegression
 
+print('\nInvestigating the dependence of green coffee price on its score...')
+
 # read relevant data from the adjusted file
 data = pandas.read_csv('adjusted_data.csv')
 score = data['Score']
 price = data['Price']
-# drop rows with missing values using adjust_data.py
+# drop rows with missing values using 'adjust_data.py'
 score, price = adjust_data.drop_missing(score, price)
 
 # plot the data
@@ -28,7 +30,7 @@ pyplot.title('Green coffee price against its score')
 score = score.to_numpy().reshape(-1, 1)
 price = price.to_numpy()
 
-# create a linear regression model for the data
+# create a Linear Regression model for the data
 model = LinearRegression()
 model.fit(score, price)
 predicted_price = model.predict(score)
@@ -37,9 +39,8 @@ predicted_price = model.predict(score)
 a = model.coef_[0]
 b = model.intercept_
 r2 = model.score(score, price)
-print(f'y = {a:.0f}x + {b:.0f}\nR2 = {r2:.2f}')
-# y = 6x + -459
-# R2 = 0.48
+print(f'\nModel obtained with Linear Regression: y = {a:.0f}x + {b:.0f}')
+print(f'Accuracy (coefficient of determination): R2 = {r2:.2f}')
 
 # plot the fitted model and its details
 pyplot.plot(score, predicted_price, color='black')
