@@ -1,56 +1,55 @@
-# green-coffee
+# greencoffee
 
 data analysis / machine learning basics
 
-repository created for practicing basic data analysis and machine learning methods using an example of personal interest: green coffee
+repository created for practicing data analysis and machine learning methods using an example of personal interest - green coffee
 
-programming language: **Python**, used libraries: **Pandas**, **Matplotlib**, **Scikit-learn**, **Nltk**
+language: Python, libraries: Pandas, Matplotlib, Scikit-learn, Nltk
 
-## data files
+## documentation
 
-- **data.csv** / **adjusted_data.csv**: data files for training purposes before / after the necessary adjustments using adjust_data.py
-- **test_data.csv** / **adjusted_test_data.csv**: data files for testing purposes before / after the necessary adjustments using adjust_data.py
+#### DOCS.md
+
+## data
+
+#### data.csv
+#### test_data.csv
+#### adjusted_data.csv
+#### adjusted_test_data.csv
 
 ## scripts and modules
 
 ### adjust_data.py
 
-module for adjusting data before or during analysis
-
-functions:
-- **adjust_data**
-  - takes a csv file name (data) as input, returns None
-  - simplifies column labels, fixes data formatting and data types, then creates an adjusted csv file
-- **drop_duplicates**
-  - takes two csv file names (training and testing data) as input, returns None
-  - drops data present in the training set from the testing set, then overwrites the latter file
-- **drop_missing**
-  - takes two series or a series and a data frame as input, returns two series or a series and a data frame
-  - removes rows with nans
+adjusting data before or during analysis
 
 ### price_score.py
 
-script for investingating the dependence of green coffee price on its score
+investigating the dependence of green coffee price on its score
 
-creates a **Linear Regression** model for the data, visualizes the data and the results
+algorithms: Linear Regression
 
 ### origins.py
 
-module for simplifying possible coffee origins
-
-functions:
-- **simplify_origins**
-  - takes a data frame (selected features) and a series (coffee names) as input, returns a data frame and a series
-  - simplifies coffee names to countries, then to continents, then to continent ids
+simplifying possible coffee origins
 
 ### origin_weight_price.py
 
-script for classifying green coffee origin based on its price and weight
+classifying green coffee origin based on its price and weight
 
-transforms the data using origins.py, visualizes the data, creates a **K Nearest Neighbors Classifier** and fits it on the training set, tests the model on the testing set
+algorithms: k-Nearest Neighbors Classifier
 
 ### origin_profile.py
 
-script for classifying green coffee origin based on its sensory profile
+classifying green coffee origin based on its sensory profile
 
-transforms the data using origins.py, vectorizes the sensory profiles using **Count Vectorizer** with **Nltk** library (tokenization and stemming), creates **Multinomial** and **Complement** **Naive Bayes Classifiers** and fits them on the training set, tests the model on the testing set
+algorithms: Snowball Stemmer, Count Vectorizer, Multinomial and Complement Naive Bayes Classifiers
+
+### main.py
+
+main script of the project
+
+## plots
+
+#### price_score.png
+#### origin_weight_price.png
