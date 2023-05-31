@@ -43,7 +43,6 @@ def adjust_data(file_name: str) -> None:
     data = pandas.read_csv(file_name)
 
     # column labels
-    print(data.columns)
     # ['Weight', 'Coffee', 'Process', 'SCA score', 'Sensory profile', 'Approx. no of bags SPOT',
     #  'Cena PLN/kg netto', 'Price USD/kg', 'Price EUR/kg']
 
@@ -54,7 +53,6 @@ def adjust_data(file_name: str) -> None:
     data.drop(columns=['Price USD/kg', 'Price EUR/kg'], inplace=True)
 
     # new column labels
-    print(data.columns)
     # ['Weight', 'Coffee', 'Process', 'Score', 'Profile', 'Bags', 'Price']
 
     # adjust the data
@@ -63,16 +61,20 @@ def adjust_data(file_name: str) -> None:
     # convert numeric strings to integers
     data['Weight'] = data['Weight'].str.removesuffix(' kg')
     data['Weight'] = pandas.to_numeric(data['Weight'])
+    
     # replace commas with periods in scores
     # convert numeric strings to floats
-    # replace alphabetic strings and dashes with nans
+    # replace alphabetic strings and dashes with NaNs
     data['Score'] = data['Score'].astype(str)
     data['Score'] = data['Score'].str.replace(',', '.')
     data['Score'] = pandas.to_numeric(data['Score'], errors='coerce')
-    # replace dashes with nans
+    
+    # replace dashes with NaNs in profiles
     data['Profile'] = data['Profile'].mask(data['Profile'] == '-')
+    
     # ensure that bags values are integers
     data['Bags'] = pandas.to_numeric(data['Bags'])
+    
     # replace commas with periods in prices
     # convert numeric strings to floats
     data['Price'] = data['Price'].str.replace(',', '.')
@@ -88,6 +90,7 @@ def drop_duplicates(train_file_name: str, test_file_name: str) -> None:
     testing csv data file
 
     Adjusts data files prior to use
+    To be used after adjust_data
 
     Parameters
     ----------
@@ -136,7 +139,7 @@ def drop_missing(data_to_check: pandas.Series,
         Input data without NaN-including rows
     """
     
-    # remove rows with nans from the data given
+    # remove rows with NaNs from the data given
     for index, missing in data_to_check.isna().items():
         if missing:
             data_to_check = data_to_check.drop(index)
