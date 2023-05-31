@@ -8,7 +8,7 @@ Functions
 simplify_origins
     Takes a Series/Data Frame (selected features) and a Series (coffee names) as input, returns a Series/Data Frame
     and a Series
-    Simplifies coffee names to countries, then to continents, then to continent IDs
+    Simplifies coffee names to countries, then to continents, then to continent ids
 
 Notes
 -----
@@ -31,12 +31,10 @@ s_america = ['Bolivia', 'Brazil', 'Colombia', 'Ecuador', 'Peru', 'Venezuela']
 origins_map = {country: continent_id
                for continent_id, continent in enumerate([africa, asia, c_america, s_america])
                for country in continent}
+# create a printable version of the mapping for later reference
 printable_origins_map = {continent: continent_id for continent_id, continent
                          in enumerate(['Africa', 'Asia & Oceania', 'Mexico & Central America', 'South America'])}
-
-if __name__ == '__main__':
-    print(printable_origins_map)
-    # {'Africa': 0, 'Asia & Oceania': 1, 'Mexico & Central America': 2, 'South America': 3}
+# {'Africa': 0, 'Asia & Oceania': 1, 'Mexico & Central America': 2, 'South America': 3}
 
 
 # use the above to transform given data
@@ -62,7 +60,6 @@ def simplify_origins(features: pandas.Series | pandas.DataFrame,
 
     # extract countries from coffee names
     origins = origins.str.partition()[0]
-    print(origins.unique())
     # ['Brazil' 'Colombia' 'Costa' 'Dom.' 'Ethiopia' 'Honduras' 'Indonesia' 'Kenya' 'Malawi' 'Mexico' 'Nicaragua'
     #  'NicaraguaSHB' 'Panama' 'Peru' 'PNG' 'Rwanda' 'Tanzania' 'Uganda' 'Yemen' 'Vietnam']
     # change Costa to Costa Rica, Dom. to Dominican Republic, PNG to Papua New Guinea
