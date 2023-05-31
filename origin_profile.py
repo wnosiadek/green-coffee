@@ -1,7 +1,7 @@
 """
 Script for classifying green coffee origin based on its sensory profile
 
-Transforms the data using origins.py, vectorizes the sensory profiles using Count Vectorizer with Nltk library
+Transforms the data using 'origins.py', vectorizes the sensory profiles using Count Vectorizer with Nltk library
 (tokenization and stemming), creates Multinomial and Complement Naive Bayes Classifiers and fits them on the training
 set, tests the models on the testing set
 
@@ -18,30 +18,29 @@ import string
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB, ComplementNB
 
+print('\nClassifying green coffee origin based on its sensory profile...')
+
 # read relevant training data from the adjusted file
 data = pandas.read_csv('adjusted_data.csv')
 train_profiles = data['Profile']
 train_origins = data['Coffee']
-# drop rows with missing values using adjust_data.py
+# drop rows with missing values using 'adjust_data.py'
 train_profiles, train_origins = adjust_data.drop_missing(train_profiles, train_origins)
 
 # read relevant testing data from the adjusted file
 test_data = pandas.read_csv('adjusted_test_data.csv')
 test_profiles = test_data['Profile']
 test_origins = test_data['Coffee']
-# drop rows with missing values using adjust_data.py
+# drop rows with missing values using 'adjust_data.py'
 test_profiles, test_origins = adjust_data.drop_missing(test_profiles, test_origins)
 
-# transform training and testing data using origins.py
-# (simplify possible origins,
-#  take into account continents rather than countries,
-#  change alphabetical data into numerical data)
+# transform training and testing data using 'origins.py'
+# (simplify possible origins, take into account continents rather than countries, change alphabetical data into
+#  numerical data)
 train_profiles, train_origins = origins.simplify_origins(train_profiles, train_origins)
 test_profiles, test_origins = origins.simplify_origins(test_profiles, test_origins)
 # print the mapping for reference
-print()
-print(origins.printable_origins_map)
-# {'Africa': 0, 'Asia & Oceania': 1, 'Mexico & Central America': 2, 'South America': 3}
+print(f'\n{origins.printable_origins_map}')
 
 
 # define a stop words checker
@@ -82,7 +81,7 @@ def tokenize(text: str) -> list[str]:
     # tokenize given text
     text_tokens = wordpunct_tokenize(text)
 
-    # stem the words using snowball stemmer
+    # stem the words using Snowball Stemmer
     # remove stopwords and punctuation using check
     stemmer = SnowballStemmer('english')
     text_tokens = [stemmer.stem(token) for token in text_tokens if check(token)]
@@ -90,7 +89,7 @@ def tokenize(text: str) -> list[str]:
     return text_tokens
 
 
-# create a count vectorizer for the training data
+# create a Count Vectorizer for the training data
 # vectorize the training profiles
 # (tokenize the text using tokenize, count the occurrences for each coffee)
 vectorizer = CountVectorizer(tokenizer=tokenize, token_pattern=None)
@@ -98,27 +97,19 @@ train_profiles_vector = vectorizer.fit_transform(train_profiles)
 # vectorize the testing profiles
 test_profiles_vector = vectorizer.transform(test_profiles)
 
-# print feature names corresponding to possible sensory notes
-print()
-print(vectorizer.get_feature_names_out())
-# ['acid' 'almond' 'appl' 'apricot' 'bergamot' 'berri' 'biscuit' 'black'
-#  'blackberri' 'blosom' 'blossom' 'blueberri' 'bodi' 'brazil' 'brown'
-#  'butter' 'camomill' 'caramel' 'cardamom' 'ceder' 'cherri' 'chewi'
-#  'chocol' 'cinnamon' 'citric' 'clove' 'cocoa' 'cranberri' 'creami' 'crisp'
-#  'cup' 'currant' 'current' 'dark' 'date' 'dri' 'drop' 'earl' 'eleg' 'fig'
-#  'floral' 'flower' 'floweri' 'fruit' 'fudg' 'goosberri' 'gooseberri'
-#  'grape' 'grapefruit' 'grass' 'grey' 'grill' 'guava' 'hazelnurt'
-#  'hazelnut' 'herb' 'honey' 'jam' 'jasmin' 'juici' 'lassi' 'lemon' 'linger'
-#  'liquroic' 'macadamia' 'mandarin' 'mango' 'mapl' 'marzepan' 'melon'
-#  'milk' 'nectarin' 'nut' 'nutmeg' 'orang' 'papaya' 'passion' 'pastri'
-#  'peach' 'peanut' 'peanutbutt' 'pear' 'pineappl' 'pink' 'plum' 'pomelo'
-#  'pralin' 'raisin' 'raspberri' 'red' 'rhubarb' 'ripe' 'roast' 'rose' 'rum'
-#  'smoke' 'spice' 'stick' 'stone' 'strawberri' 'sugar' 'sweet' 'syrup'
-#  'tea' 'tropic' 'vanilla' 'vibrant' 'violet' 'walnut' 'white' 'wild'
-#  'yellow']
+# feature names corresponding to possible sensory notes
+# ['acid' 'almond' 'appl' 'apricot' 'bergamot' 'berri' 'biscuit' 'black' 'blackberri' 'blosom' 'blossom' 'blueberri'
+#  'bodi' 'brazil' 'brown' 'butter' 'camomill' 'caramel' 'cardamom' 'ceder' 'cherri' 'chewi' 'chocol' 'cinnamon'
+#  'citric' 'clove' 'cocoa' 'cranberri' 'creami' 'crisp' 'cup' 'currant' 'current' 'dark' 'date' 'dri' 'drop' 'earl'
+#  'eleg' 'fig' 'floral' 'flower' 'floweri' 'fruit' 'fudg' 'goosberri' 'gooseberri' 'grape' 'grapefruit' 'grass' 'grey'
+#  'grill' 'guava' 'hazelnurt' 'hazelnut' 'herb' 'honey' 'jam' 'jasmin' 'juici' 'lassi' 'lemon' 'linger' 'liquroic'
+#  'macadamia' 'mandarin' 'mango' 'mapl' 'marzepan' 'melon' 'milk' 'nectarin' 'nut' 'nutmeg' 'orang' 'papaya' 'passion'
+#  'pastri' 'peach' 'peanut' 'peanutbutt' 'pear' 'pineappl' 'pink' 'plum' 'pomelo' 'pralin' 'raisin' 'raspberri' 'red'
+#  'rhubarb' 'ripe' 'roast' 'rose' 'rum' 'smoke' 'spice' 'stick' 'stone' 'strawberri' 'sugar' 'sweet' 'syrup' 'tea'
+#  'tropic' 'vanilla' 'vibrant' 'violet' 'walnut' 'white' 'wild' 'yellow']
 # there are some mistakes (blosom, current, goosberry, hazelnurt) but they are inevitable
 
-# create multinomial and complement naive bayes classifiers for the training data
+# create Multinomial and Complement Naive Bayes Classifiers for the training data
 multinomial_classifier = MultinomialNB()
 multinomial_classifier.fit(train_profiles_vector, train_origins.to_numpy())
 complement_classifier = ComplementNB()
@@ -131,17 +122,9 @@ complement_predicted_origins = complement_classifier.predict(test_profiles_vecto
 complement_accuracy = complement_classifier.score(test_profiles_vector, test_origins.to_numpy())
 
 # the results
-print()
-print(f'True origins: {test_origins.to_numpy()}')
-print(f'Origins predicted by multinomial nb: {multinomial_predicted_origins}')
-print(f'Accuracy of multinomial nb: {multinomial_accuracy:.2f}')
-# True origins: [3 3 3 3 3 2 3 0 0]
-# Origins predicted by multinomial nb: [3. 3. 2. 3. 3. 3. 3. 0. 0.]
-# Accuracy of multinomial nb: 0.78
-print()
-print(f'True origins: {test_origins.to_numpy()}')
-print(f'Origins predicted by complement nb: {complement_predicted_origins}')
-print(f'Accuracy of complement nb: {complement_accuracy:.2f}')
-# True origins: [3 3 3 3 3 2 3 0 0]
-# Origins predicted by complement nb: [3. 3. 2. 2. 2. 3. 3. 0. 0.]
-# Accuracy of complement nb: 0.56
+print(f'\nTrue origins: {test_origins.to_numpy()}')
+print(f'Origins predicted with Multinomial Naive Bayes: {multinomial_predicted_origins}')
+print(f'Accuracy (mean accuracy): {multinomial_accuracy:.2f}')
+print(f'\nTrue origins: {test_origins.to_numpy()}')
+print(f'Origins predicted with Complement Naive Bayes: {complement_predicted_origins}')
+print(f'Accuracy (mean accuracy): {complement_accuracy:.2f}')
