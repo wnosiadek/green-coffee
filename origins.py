@@ -6,8 +6,6 @@ Requires installation of 'pandas'
 Functions
 ---------
 simplify_origins
-    Takes a Series/Data Frame (selected features) and a Series (coffee names) as input, returns a Series/Data Frame
-    and a Series
     Simplifies coffee names to countries, then to continents, then to continent ids
 
 Notes
@@ -42,8 +40,7 @@ def simplify_origins(features: pandas.Series | pandas.DataFrame,
                      origins: pandas.Series)\
         -> tuple[pandas.Series | pandas.DataFrame, pandas.Series]:
     """
-    Simplifies possible origins - takes into account continents rather than countries, changes alphabetical data into
-    numerical data
+    Simplifies coffee names to countries, then to continents, then to continent ids
 
     Parameters
     ----------
