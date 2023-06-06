@@ -4,7 +4,7 @@ Main script of the project
 Transforms 'data.csv' and 'test_data.csv' using 'adjust_data.py'
 Runs 'price_score.py', 'origin_weight_price.py', 'origin_profile.py'
 
-Requires installation of 'pandas', 'matplotlib', 'scikit-learn', 'nltk'
+Requires installation of 'pandas', 'matplotlib', 'scikit-learn', 'nltk', 'scipy'
 """
 
 import adjust_data
