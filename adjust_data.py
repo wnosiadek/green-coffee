@@ -6,13 +6,10 @@ Requires installation of 'pandas'
 Functions
 ---------
 adjust_data
-    Takes a csv file name (data) as input, returns None
     Simplifies column labels, fixes data formatting and data types, then creates an adjusted csv file
 drop_duplicates
-    Takes two csv file names (training and testing data) as input, returns None
     Drops data present in the training set from the testing set, then overwrites the latter file
 drop_missing
-    Takes two Series or a Series and a Data Frame as input, returns two Series or a Series and a Data Frame
     Removes rows with NaNs
 """
 
@@ -21,7 +18,7 @@ import pandas
 
 def adjust_data(file_name: str) -> None:
     """
-    Reads csv data, adjusts the data where necessary, writes the data to a new csv file
+    Simplifies column labels, fixes data formatting and data types, then creates an adjusted csv file
 
     Adjusts data files prior to use
 
@@ -86,8 +83,7 @@ def adjust_data(file_name: str) -> None:
   
 def drop_duplicates(train_file_name: str, test_file_name: str) -> None:
     """
-    Reads csv data for training and testing, drops samples present in both sets from the testing set, overwrites the
-    testing csv data file
+    Drops data present in the training set from the testing set, then overwrites the latter file
 
     Adjusts data files prior to use
     To be used after adjust_data
