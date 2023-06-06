@@ -9,18 +9,15 @@
     Functions
     ---------
     adjust_data
-        Takes a csv file name (data) as input, returns None
         Simplifies column labels, fixes data formatting and data types, then creates an adjusted csv file
     drop_duplicates
-        Takes two csv file names (training and testing data) as input, returns None
         Drops data present in the training set from the testing set, then overwrites the latter file
     drop_missing
-        Takes two Series or a Series and a Data Frame as input, returns two Series or a Series and a Data Frame
         Removes rows with NaNs
 
 ### adjust_data
 
-    Reads csv data, adjusts the data where necessary, writes the data to a new csv file
+    Simplifies column labels, fixes data formatting and data types, then creates an adjusted csv file
 
     Adjusts data files prior to use
 
@@ -39,8 +36,7 @@
 
 ### drop_duplicates
 
-    Reads csv data for training and testing, drops samples present in both sets from the testing set, overwrites the
-    testing csv data file
+    Drops data present in the training set from the testing set, then overwrites the latter file
 
     Adjusts data files prior to use
     To be used after adjust_data
@@ -91,8 +87,6 @@
     Functions
     ---------
     simplify_origins
-        Takes a Series/Data Frame (selected features) and a Series (coffee names) as input, returns a Series/Data Frame
-        and a Series
         Simplifies coffee names to countries, then to continents, then to continent ids
 
     Notes
@@ -101,8 +95,7 @@
 
 ### simplify_origins
 
-    Simplifies possible origins - takes into account continents rather than countries, changes alphabetical data into
-    numerical data
+    Simplifies coffee names to countries, then to continents, then to continent ids
 
     Parameters
     ----------
@@ -120,20 +113,26 @@
 
     Script for classifying green coffee origin based on its price and weight
 
-    Transforms the data using 'origins.py', visualizes the data, creates a k-Nearest Neighbors Classifier and fits it on the
-    training set, tests the model on the testing set
+    Transforms the data using 'origins.py', visualizes the data, creates a k-Nearest Neighbors Classifier and fits it on the training set, tests the model on the testing set
 
     Requires installation of 'pandas', 'matplotlib', 'scikit-learn'
 
-## origin_profile.py
+## profiles.py
 
-    Script for classifying green coffee origin based on its sensory profile
+    Module for simplifying possible sensory profiles
 
-    Transforms the data using 'origins.py', vectorizes the sensory profiles using Count Vectorizer with Nltk library
-    (tokenization and stemming), creates Multinomial and Complement Naive Bayes Classifiers and fits them on the training
-    set, tests the models on the testing set
+    Uses Snowball Stemmer, Count Vectorizer
 
-    Requires installation of 'pandas', 'nltk', 'scikit-learn'
+    Requires installation of 'nltk', 'pandas', 'scipy', 'scikit-learn'
+
+    Functions
+    ---------
+    check
+        Checks for stop words and punctuation
+    tokenize
+        Tokenizes the text, stems the words, removes stop words
+    vectorize
+        Vectorizes the training and testing profiles
 
 ### check
 
@@ -163,6 +162,30 @@
     list[str]
         Stemmed words of the input text
 
+### vectorize
+
+    Vectorizes the training and testing profiles
+
+    Parameters
+    ----------
+    train_profiles: pandas.Series
+        Sensory profiles for training
+    test_profiles: pandas.Series
+        Sensory profiles for testing
+
+    Returns
+    -------
+    tuple[scipy.sparse.csr_matrix, scipy.sparse.csr_matrix]
+        Profiles vectorized using Count Vectorizer with tokenize
+
+## origin_profile.py
+
+    Script for classifying green coffee origin based on its sensory profile
+
+    Transforms the data using 'origins.py', vectorizes the sensory profiles using 'profiles.py', creates Multinomial and Complement Naive Bayes Classifiers and fits them on the training set, tests the models on the testing set
+
+    Requires installation of 'nltk', 'pandas', 'scipy', 'scikit-learn'
+
 ## main.py
 
     Main script of the project
@@ -170,4 +193,4 @@
     Transforms 'data.csv' and 'test_data.csv' using 'adjust_data.py'
     Runs 'price_score.py', 'origin_weight_price.py', 'origin_profile.py'
 
-    Requires installation of 'pandas', 'matplotlib', 'scikit-learn', 'nltk'
+    Requires installation of 'pandas', 'matplotlib', 'scikit-learn', 'nltk', 'scipy'
