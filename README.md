@@ -51,6 +51,16 @@ classifying green coffee origin based on its sensory profile
 
 algorithms: Multinomial and Complement Naive Bayes Classifiers
 
+### processes.py
+
+simplifying possible processing methods
+
+### process_profile.py
+
+classifying green coffee processing method based on its sensory profile
+
+algorithms: Support Vector Classifier
+
 ### main.py
 
 main script of the project
