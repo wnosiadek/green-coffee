@@ -10,41 +10,54 @@ simplify_processes
 """
 
 import pandas
+import adjust_data
 
 
-def simplify_processes(train_processes: pandas.Series,
+def simplify_processes(train_features: pandas.Series | pandas.DataFrame,
+                       train_processes: pandas.Series,
+                       test_features: pandas.Series | pandas.DataFrame,
                        test_processes: pandas.Series,
-                       print_map: bool = True)\
-        -> tuple[pandas.Series, pandas.Series]:
+                       print_map: bool = True) \
+        -> tuple[pandas.Series | pandas.DataFrame, pandas.Series, 
+                 pandas.Series | pandas.DataFrame, pandas.Series]:
     """
     Simplifies processing method names to integer ids
 
     Parameters
     ----------
+    train_features: pandas.Series | pandas.DataFrame
+        Chosen coffee characteristics for training
     train_processes: pandas.Series
         Processing methods for training
+    test_features: pandas.Series | pandas.DataFrame
+        Chosen coffee characteristics for testing
     test_processes: pandas.Series
         Processing methods for testing
-    print_map: bool, optional
-        Whether to print the {process: process_id} map (default is True)
+    print_map: bool, default True
+        Whether to print the {process: process_id} map
 
     Returns
     -------
-    tuple[pandas.Series, pandas.Series]
+    tuple[pandas.Series | pandas.DataFrame, pandas.Series, pandas.Series | pandas.DataFrame, pandas.Series]
         Input processing methods data simplified with the {process: process_id} map
     """
 
     # assign an integer id to each processing method
-    processes_map = {process: process_id for process_id, process in enumerate(train_processes.unique())}
-    # {'pulped natural': 0, 'natural': 1, 'double fermente': 2, 'washed': 3, 'red honey': 4, 'semi-washed': 5,
-    #  'prolonged ferme': 6, 'wet hulled': 7, 'anaerobic': 8, 'honey': 9}
+    processes_map = {process: process_id 
+                     for process_id, process 
+                     in enumerate([process
+                                   for process, many in train_processes.value_counts().gt(2).items() if many])}
+    # {'washed': 0, 'natural': 1, 'pulped natural': 2, 'anaerobic': 3}
 
     # transform given data using the mapping
     train_processes = train_processes.map(processes_map)
     test_processes = test_processes.map(processes_map)
+    # drop any mistakes using 'adjust_data.py'
+    train_processes, train_features = adjust_data.drop_missing(train_processes, train_features)
+    test_processes, test_features = adjust_data.drop_missing(test_processes, test_features)
 
     # print the mapping for reference
     if print_map:
-        print(processes_map)
+        print(f'\n{processes_map}')
 
-    return train_processes, test_processes
+    return train_features, train_processes, test_features, test_processes
