@@ -72,7 +72,7 @@ def tokenize(text: str) -> list[str]:
 
 # define a vectorizer
 def vectorize(train_profiles: pandas.Series,
-              test_profiles: pandas.Series)\
+              test_profiles: pandas.Series) \
         -> tuple[scipy.sparse.csr_matrix, scipy.sparse.csr_matrix]:
     """
     Vectorizes the training and testing profiles
