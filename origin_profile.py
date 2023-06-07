@@ -4,7 +4,7 @@ Script for classifying green coffee origin based on its sensory profile
 Transforms the data using 'origins.py', vectorizes the sensory profiles using 'profiles.py', creates Multinomial and 
 Complement Naive Bayes Classifiers and fits them on the training set, tests the models on the testing set
 
-Requires installation of 'nltk', 'pandas', 'scipy', 'scikit-learn'
+Requires installation of 'pandas', 'nltk', 'scipy', 'scikit-learn'
 """
 
 import pandas
