@@ -60,14 +60,14 @@
 
     Parameters
     ----------
-    data_to_check: pandas.Series
+    data_to_check: pandas.Series | pandas.DataFrame
         Data with NaNs possibly present
     related_data: pandas.Series | pandas.DataFrame
         Data related to data_to_check
 
     Returns
     -------
-    tuple[pandas.Series, pandas.Series | pandas.DataFrame]
+    tuple[pandas.Series | pandas.DataFrame, pandas.Series | pandas.DataFrame]
         Input data without NaN-including rows
 
 ## price_score.py
@@ -109,14 +109,38 @@
     tuple[pandas.Series | pandas.DataFrame, pandas.Series]
         Input characteristics and origins simplified with origins_map
 
-## origin_weight_price.py
+## processes.py
 
-    Script for classifying green coffee origin based on its price and weight
+    Module for simplifying possible processing methods
 
-    Transforms the data using 'origins.py', visualizes the data, creates a k-Nearest Neighbors Classifier and fits it on the 
-    training set, tests the model on the testing set
+    Requires installation of 'pandas'
 
-    Requires installation of 'pandas', 'matplotlib', 'scikit-learn'
+    Functions
+    ---------
+    simplify_processes
+        Simplifies processing method names to integer ids
+
+### simplify_processes
+
+    Simplifies processing method names to integer ids
+
+    Parameters
+    ----------
+    train_features: pandas.Series | pandas.DataFrame
+        Chosen coffee characteristics for training
+    train_processes: pandas.Series
+        Processing methods for training
+    test_features: pandas.Series | pandas.DataFrame
+        Chosen coffee characteristics for testing
+    test_processes: pandas.Series
+        Processing methods for testing
+    print_map: bool, default True
+        Whether to print the {process: process_id} map
+
+    Returns
+    -------
+    tuple[pandas.Series | pandas.DataFrame, pandas.Series, pandas.Series | pandas.DataFrame, pandas.Series]
+        Input characteristics and processing methods simplified with the {process: process_id} map
 
 ## profiles.py
 
@@ -179,6 +203,15 @@
     tuple[scipy.sparse.csr_matrix, scipy.sparse.csr_matrix]
         Profiles vectorized using Count Vectorizer with tokenize
 
+## origin_weight_price.py
+
+    Script for classifying green coffee origin based on its price and weight
+
+    Transforms the data using 'origins.py', visualizes the data, creates a k-Nearest Neighbors Classifier and fits it on the 
+    training set, tests the model on the testing set
+
+    Requires installation of 'pandas', 'matplotlib', 'scikit-learn'
+
 ## origin_profile.py
 
     Script for classifying green coffee origin based on its sensory profile
@@ -188,34 +221,14 @@
 
     Requires installation of 'pandas', 'nltk', 'scipy', 'scikit-learn'
 
-## processes.py
+## process_score_price.py
 
-    Module for simplifying possible processing methods
+    Script for classifying green coffee processing method based on its price and score
 
-    Requires installation of 'pandas'
+    Transforms the data using 'processes.py', visualizes the data, creates k-Nearest Neighbors and Fixed-Radius Near
+    Neighbors Classifiers and fits them on the training set, tests the models on the testing set
 
-    Functions
-    ---------
-    simplify_processes
-        Simplifies processing method names to integer ids
-
-### simplify_processes
-
-    Simplifies processing method names to integer ids
-
-    Parameters
-    ----------
-    train_processes: pandas.Series
-        Processing methods for training
-    test_processes: pandas.Series
-        Processing methods for testing
-    print_map: bool, optional
-        Whether to print the {process: process_id} map (default is True)
-
-    Returns
-    -------
-    tuple[pandas.Series, pandas.Series]
-        Input processing methods data simplified with the {process: process_id} map
+    Requires installation of 'pandas', 'matplotlib', 'scikit-learn'
 
 ## process_profile.py
 
@@ -231,6 +244,6 @@
     Main script of the project
 
     Transforms 'data.csv' and 'test_data.csv' using 'adjust_data.py'
-    Runs 'price_score.py', 'origin_weight_price.py', 'origin_profile.py', 'process_profile.py'
+    Runs 'price_score.py', 'origin_weight_price.py', 'origin_profile.py', 'process_profile.py', 'process_score_price.py'
 
     Requires installation of 'pandas', 'matplotlib', 'scikit-learn', 'nltk', 'scipy'
