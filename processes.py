@@ -39,7 +39,7 @@ def simplify_processes(train_features: pandas.Series | pandas.DataFrame,
     Returns
     -------
     tuple[pandas.Series | pandas.DataFrame, pandas.Series, pandas.Series | pandas.DataFrame, pandas.Series]
-        Input processing methods data simplified with the {process: process_id} map
+        Input characteristics and processing methods simplified with the {process: process_id} map
     """
 
     # assign an integer id to each processing method
