@@ -34,10 +34,10 @@ Classifying green coffee origin based on its price and weight...
 {'Africa': 0, 'Asia & Oceania': 1, 'Mexico & Central America': 2, 'South America': 3}
 
 True origins: [3 3 3 3 3 2 2 2 3 0 0]
-Origins predicted with k-Nearest Neighbors: [3. 3. 3. 3. 3. 2. 2. 2. 2. 0. 0.]
+Origins predicted with Decision Trees: [3. 3. 3. 3. 3. 3. 2. 2. 3. 0. 0.]
 Accuracy (mean accuracy): 0.91
 '''
-# pop-up plot: 'origin_weight_price.png'
+# pop-up plots: 'origin_weight_price.png', 'origin_weight_price_tree.png'
 
 import origin_profile
 
