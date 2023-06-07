@@ -32,7 +32,8 @@ test_profiles, test_processes = adjust_data.drop_missing(test_profiles, test_pro
 # transform training and testing data using 'processes.py'
 # (simplify processing method names to integer ids, print the mapping for reference)
 print()
-train_processes, test_processes = processes.simplify_processes(train_processes, test_processes)
+train_profiles, train_processes, test_profiles, test_processes \
+    = processes.simplify_processes(train_profiles, train_processes, test_profiles, test_processes, print_map=True)
 
 # vectorize the profiles using 'profiles.py'
 train_profiles_vector, test_profiles_vector = profiles.vectorize(train_profiles, test_profiles)
@@ -47,5 +48,5 @@ accuracy = classifier.score(test_profiles_vector, test_processes.to_numpy())
 
 # the results
 print(f'\nTrue processing methods: {test_processes.to_numpy()}')
-print(f'Processing methods predicted with Support Vector Machine: {predicted_processes}')
+print(f'Processing methods predicted with Support Vector Machines: {predicted_processes}')
 print(f'Accuracy (mean accuracy): {accuracy:.2f}')
