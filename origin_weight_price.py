@@ -1,8 +1,8 @@
 """
 Script for classifying green coffee origin based on its price and weight
 
-Transforms the data using 'origins.py', visualizes the data, creates a k-Nearest Neighbors Classifier and fits it on the
-training set, tests the model on the testing set
+Transforms the data using 'origins.py', visualizes the data, creates a Decision Tree Classifier and fits it on the
+training set, visualizes the tree, tests the model on the testing set
 
 Requires installation of 'pandas', 'matplotlib', 'scikit-learn'
 """
@@ -10,7 +10,7 @@ Requires installation of 'pandas', 'matplotlib', 'scikit-learn'
 import pandas
 import origins
 from matplotlib import pyplot
-from sklearn.neighbors import KNeighborsClassifier
+from sklearn.tree import DecisionTreeClassifier, plot_tree
 
 print('\nClassifying green coffee origin based on its price and weight...')
 
@@ -47,9 +47,14 @@ train_origins = train_origins.to_numpy()
 test_features = test_features.to_numpy()
 test_origins = test_origins.to_numpy()
 
-# create a k-Nearest Neighbors Classifier for the training data
-classifier = KNeighborsClassifier()
+# create a Decision Tree Classifier for the training data
+classifier = DecisionTreeClassifier()
 classifier.fit(train_features, train_origins)
+
+# plot the decision tree
+plot_tree(classifier, max_depth=2, feature_names=['Weight', 'Price'], class_names = ['0', '1', '2', '3'])
+pyplot.title('Green coffee origin classification - decision tree')
+pyplot.show()
 
 # make predictions on the testing data
 predicted_origins = classifier.predict(test_features)
@@ -57,5 +62,5 @@ accuracy = classifier.score(test_features, test_origins)
 
 # the results
 print(f'\nTrue origins: {test_origins}')
-print(f'Origins predicted with k-Nearest Neighbors: {predicted_origins}')
+print(f'Origins predicted with Decision Trees: {predicted_origins}')
 print(f'Accuracy (mean accuracy): {accuracy:.2f}')
