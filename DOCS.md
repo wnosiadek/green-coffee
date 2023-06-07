@@ -207,8 +207,8 @@
 
     Script for classifying green coffee origin based on its price and weight
 
-    Transforms the data using 'origins.py', visualizes the data, creates a k-Nearest Neighbors Classifier and fits it on the 
-    training set, tests the model on the testing set
+    Transforms the data using 'origins.py', visualizes the data, creates a Decision Tree Classifier and fits it on the 
+    training set, visualizes the tree, tests the model on the testing set
 
     Requires installation of 'pandas', 'matplotlib', 'scikit-learn'
 
