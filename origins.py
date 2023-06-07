@@ -30,14 +30,15 @@ origins_map = {country: continent_id
                for continent_id, continent in enumerate([africa, asia, c_america, s_america])
                for country in continent}
 # create a printable version of the mapping for later reference
-printable_origins_map = {continent: continent_id for continent_id, continent
+printable_origins_map = {continent: continent_id
+                         for continent_id, continent
                          in enumerate(['Africa', 'Asia & Oceania', 'Mexico & Central America', 'South America'])}
 # {'Africa': 0, 'Asia & Oceania': 1, 'Mexico & Central America': 2, 'South America': 3}
 
 
 # use the above to transform given data
 def simplify_origins(features: pandas.Series | pandas.DataFrame,
-                     origins: pandas.Series)\
+                     origins: pandas.Series) \
         -> tuple[pandas.Series | pandas.DataFrame, pandas.Series]:
     """
     Simplifies coffee names to countries, then to continents, then to continent ids
