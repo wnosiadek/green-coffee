@@ -2,7 +2,7 @@
 Main script of the project
 
 Transforms 'data.csv' and 'test_data.csv' using 'adjust_data.py'
-Runs 'price_score.py', 'origin_weight_price.py', 'origin_profile.py'
+Runs 'price_score.py', 'origin_weight_price.py', 'origin_profile.py', 'process_profile.py'
 
 Requires installation of 'pandas', 'matplotlib', 'scikit-learn', 'nltk', 'scipy'
 """
@@ -53,5 +53,19 @@ Accuracy (mean accuracy): 0.78
 
 True origins: [3 3 3 3 3 2 3 0 0]
 Origins predicted with Complement Naive Bayes: [3. 3. 2. 2. 2. 3. 3. 0. 0.]
+Accuracy (mean accuracy): 0.56
+'''
+
+import process_profile
+
+# output of 'process_profile.py'
+'''
+Classifying green coffee processing method based on its sensory profile...
+
+{'pulped natural': 0, 'natural': 1, 'double fermente': 2, 'washed': 3, 'red honey': 4, 'semi-washed': 5, 
+'prolonged ferme': 6, 'wet hulled': 7, 'anaerobic': 8, 'honey': 9}
+
+True processing methods: [0 1 1 3 3 3 3 3 1]
+Processing methods predicted with Support Vector Machine: [3 3 1 3 3 3 3 1 3]
 Accuracy (mean accuracy): 0.56
 '''
