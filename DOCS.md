@@ -113,7 +113,8 @@
 
     Script for classifying green coffee origin based on its price and weight
 
-    Transforms the data using 'origins.py', visualizes the data, creates a k-Nearest Neighbors Classifier and fits it on the training set, tests the model on the testing set
+    Transforms the data using 'origins.py', visualizes the data, creates a k-Nearest Neighbors Classifier and fits it on the 
+    training set, tests the model on the testing set
 
     Requires installation of 'pandas', 'matplotlib', 'scikit-learn'
 
@@ -182,15 +183,54 @@
 
     Script for classifying green coffee origin based on its sensory profile
 
-    Transforms the data using 'origins.py', vectorizes the sensory profiles using 'profiles.py', creates Multinomial and Complement Naive Bayes Classifiers and fits them on the training set, tests the models on the testing set
+    Transforms the data using 'origins.py', vectorizes the sensory profiles using 'profiles.py', creates Multinomial and 
+    Complement Naive Bayes Classifiers and fits them on the training set, tests the models on the testing set
 
-    Requires installation of 'nltk', 'pandas', 'scipy', 'scikit-learn'
+    Requires installation of 'pandas', 'nltk', 'scipy', 'scikit-learn'
+
+## processes.py
+
+    Module for simplifying possible processing methods
+
+    Requires installation of 'pandas'
+
+    Functions
+    ---------
+    simplify_processes
+        Simplifies processing method names to integer ids
+
+### simplify_processes
+
+    Simplifies processing method names to integer ids
+
+    Parameters
+    ----------
+    train_processes: pandas.Series
+        Processing methods for training
+    test_processes: pandas.Series
+        Processing methods for testing
+    print_map: bool, optional
+        Whether to print the {process: process_id} map (default is True)
+
+    Returns
+    -------
+    tuple[pandas.Series, pandas.Series]
+        Input processing methods data simplified with the {process: process_id} map
+
+## process_profile.py
+
+    Script for classifying green coffee processing method based on its sensory profile
+
+    Transforms the data using 'processes.py', vectorizes the sensory profiles using 'profiles.py', creates a Support Vector
+    Classifier and fits it on the training set, tests the model on the testing set
+
+    Requires installation of 'pandas', 'nltk', 'scipy', 'scikit-learn'
 
 ## main.py
 
     Main script of the project
 
     Transforms 'data.csv' and 'test_data.csv' using 'adjust_data.py'
-    Runs 'price_score.py', 'origin_weight_price.py', 'origin_profile.py'
+    Runs 'price_score.py', 'origin_weight_price.py', 'origin_profile.py', 'process_profile.py'
 
     Requires installation of 'pandas', 'matplotlib', 'scikit-learn', 'nltk', 'scipy'
