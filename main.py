@@ -2,7 +2,7 @@
 Main script of the project
 
 Transforms 'data.csv' and 'test_data.csv' using 'adjust_data.py'
-Runs 'price_score.py', 'origin_weight_price.py', 'origin_profile.py', 'process_profile.py'
+Runs 'price_score.py', 'origin_weight_price.py', 'origin_profile.py', 'process_profile.py', 'process_score_price.py'
 
 Requires installation of 'pandas', 'matplotlib', 'scikit-learn', 'nltk', 'scipy'
 """
@@ -62,10 +62,27 @@ import process_profile
 '''
 Classifying green coffee processing method based on its sensory profile...
 
-{'pulped natural': 0, 'natural': 1, 'double fermente': 2, 'washed': 3, 'red honey': 4, 'semi-washed': 5, 
-'prolonged ferme': 6, 'wet hulled': 7, 'anaerobic': 8, 'honey': 9}
+{'washed': 0, 'natural': 1, 'pulped natural': 2, 'wet hulled': 3, 'anaerobic': 4}
 
-True processing methods: [0 1 1 3 3 3 3 3 1]
-Processing methods predicted with Support Vector Machine: [3 3 1 3 3 3 3 1 3]
+True processing methods: [2 1 1 0 0 0 0 0 1]
+Processing methods predicted with Support Vector Machines: [0. 0. 1. 0. 0. 0. 0. 1. 0.]
 Accuracy (mean accuracy): 0.56
 '''
+
+import process_score_price
+
+# output of 'process_score_price.py'
+'''
+Classifying green coffee processing method based on its price and score...
+
+{'washed': 0, 'natural': 1, 'pulped natural': 2, 'anaerobic': 3}
+
+True processing methods: [2 0 1]
+Processing methods predicted with k-Nearest Neighbors: [1. 1. 0.]
+Accuracy (mean accuracy): 0.00
+
+True processing methods: [2 0 1]
+Processing methods predicted with Fixed-Radius Near Neighbors: [0. 1. 0.]
+Accuracy (mean accuracy): 0.00
+'''
+# pop-up plot: 'process_score_price.png'
