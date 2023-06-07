@@ -33,11 +33,9 @@ algorithms: Linear Regression
 
 simplifying possible coffee origins
 
-### origin_weight_price.py
+### processes.py
 
-classifying green coffee origin based on its price and weight
-
-algorithms: k-Nearest Neighbors Classifier
+simplifying possible processing methods
 
 ### profiles.py
 
@@ -45,15 +43,23 @@ simplifying possible sensory profiles
 
 algorithms: Snowball Stemmer, Count Vectorizer
 
+### origin_weight_price.py
+
+classifying green coffee origin based on its price and weight
+
+algorithms: k-Nearest Neighbors Classifier
+
 ### origin_profile.py
 
 classifying green coffee origin based on its sensory profile
 
 algorithms: Multinomial and Complement Naive Bayes Classifiers
 
-### processes.py
+### process_score_price.py
 
-simplifying possible processing methods
+classifying green coffee processing method based on its price and score
+
+algorithms: k-Nearest Neighbors and Fixed-Radius Near Neighbors Classifiers
 
 ### process_profile.py
 
@@ -69,3 +75,4 @@ main script of the project
 
 #### price_score.png
 #### origin_weight_price.png
+#### process_score_price.png
