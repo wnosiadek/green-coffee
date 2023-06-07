@@ -47,7 +47,7 @@ algorithms: Snowball Stemmer, Count Vectorizer
 
 classifying green coffee origin based on its price and weight
 
-algorithms: k-Nearest Neighbors Classifier
+algorithms: Decision Tree Classifier
 
 ### origin_profile.py
 
@@ -75,4 +75,5 @@ main script of the project
 
 #### price_score.png
 #### origin_weight_price.png
+#### origin_weight_price_tree.png
 #### process_score_price.png
