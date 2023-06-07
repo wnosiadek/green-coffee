@@ -114,9 +114,9 @@ def drop_duplicates(train_file_name: str, test_file_name: str) -> None:
     test_data.to_csv(test_file_name, index=False)
 
 
-def drop_missing(data_to_check: pandas.Series,
-                 related_data: pandas.Series | pandas.DataFrame)\
-        -> tuple[pandas.Series, pandas.Series | pandas.DataFrame]:
+def drop_missing(data_to_check: pandas.Series | pandas.DataFrame,
+                 related_data: pandas.Series | pandas.DataFrame) \
+        -> tuple[pandas.Series | pandas.DataFrame, pandas.Series | pandas.DataFrame]:
     """
     Removes rows with NaNs
 
@@ -124,22 +124,28 @@ def drop_missing(data_to_check: pandas.Series,
 
     Parameters
     ----------
-    data_to_check: pandas.Series
+    data_to_check: pandas.Series | pandas.DataFrame
         Data with NaNs possibly present
     related_data: pandas.Series | pandas.DataFrame
         Data related to data_to_check
 
     Returns
     -------
-    tuple[pandas.Series, pandas.Series | pandas.DataFrame]
+    tuple[pandas.Series | pandas.DataFrame, pandas.Series | pandas.DataFrame]
         Input data without NaN-including rows
     """
     
     # remove rows with NaNs from the data given
-    for index, missing in data_to_check.isna().items():
-        if missing:
-            data_to_check = data_to_check.drop(index)
-            related_data = related_data.drop(index)
+    if isinstance(data_to_check, pandas.Series):
+        for index, missing in data_to_check.isna().items():
+            if missing:
+                data_to_check = data_to_check.drop(index)
+                related_data = related_data.drop(index)
+    elif isinstance(data_to_check, pandas.DataFrame):
+        for index, series in data_to_check.iterrows():
+            if series.hasnans:
+                data_to_check = data_to_check.drop(index)
+                related_data = related_data.drop(index)
     
     # reset indices
     data_to_check = data_to_check.reset_index(drop=True)
