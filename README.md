@@ -8,6 +8,16 @@ supervised learning, classification and regression, natural language processing,
 
 language: Python, libraries: Pandas, Matplotlib, Scikit-learn, Nltk, Scipy, Numpy
 
+## branches
+
+### main
+
+basic version
+
+### main_pca
+
+\+ dimensionality reduction
+
 ## documentation
 
 #### DOCS.md
