@@ -44,10 +44,10 @@ def adjust_data(file_name: str) -> None:
     #  'Cena PLN/kg netto', 'Price USD/kg', 'Price EUR/kg']
 
     # rename column labels
-    data.rename(columns={'SCA score': 'Score', 'Sensory profile': 'Profile', 'Approx. no of bags SPOT': 'Bags',
-                         'Cena PLN/kg netto': 'Price'}, inplace=True)
+    data = data.rename(columns={'SCA score': 'Score', 'Sensory profile': 'Profile', 'Approx. no of bags SPOT': 'Bags',
+                                'Cena PLN/kg netto': 'Price'})
     # drop irrelevant columns
-    data.drop(columns=['Price USD/kg', 'Price EUR/kg'], inplace=True)
+    data = data.drop(columns=['Price USD/kg', 'Price EUR/kg'])
 
     # new column labels
     # ['Weight', 'Coffee', 'Process', 'Score', 'Profile', 'Bags', 'Price']
