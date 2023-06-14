@@ -52,7 +52,7 @@ test_processes = test_processes.to_numpy()
 # create k-Nearest Neighbors and Fixed-Radius Near Neighbors Classifiers for the training data
 k_classifier = KNeighborsClassifier()
 k_classifier.fit(train_features, train_processes)
-radius_classifier = RadiusNeighborsClassifier()
+radius_classifier = RadiusNeighborsClassifier(radius=2)    # the default radius=1 causes Value Error due to outliers
 radius_classifier.fit(train_features, train_processes)
 
 # make predictions on the testing data
