@@ -203,14 +203,15 @@
     tuple[scipy.sparse.csr_matrix, scipy.sparse.csr_matrix]
         Profiles vectorized using Count Vectorizer with tokenize
 
-## origin_weight_price.py
+## origin_weight_score_price.py
 
-    Script for classifying green coffee origin based on its price and weight
+    Script for classifying green coffee origin based on its price, score and weight
 
-    Transforms the data using 'origins.py', visualizes the data, creates a Decision Tree Classifier and fits it on the 
-    training set, visualizes the tree, tests the model on the testing set
+    Transforms the data using 'origins.py', scales the data with Min-Max Scaler and reduces its dimensionality with
+    Principal Component Analysis, visualizes the data, creates a Decision Tree Classifier and fits it on the training set,
+    visualizes the tree, tests the model on the testing set
 
-    Requires installation of 'pandas', 'matplotlib', 'scikit-learn'
+    Requires installation of 'pandas', 'scikit-learn', 'numpy', 'matplotlib'
 
 ## origin_profile.py
 
@@ -221,14 +222,15 @@
 
     Requires installation of 'pandas', 'nltk', 'scipy', 'scikit-learn'
 
-## process_score_price.py
+## process_weight_score_price.py
 
-    Script for classifying green coffee processing method based on its price and score
+    Script for classifying green coffee processing method based on its price, score and weight
 
-    Transforms the data using 'processes.py', visualizes the data, creates k-Nearest Neighbors and Fixed-Radius Near
-    Neighbors Classifiers and fits them on the training set, tests the models on the testing set
+    Transforms the data using 'processes.py', scales the data with Min-Max Scaler and reduces its dimensionality with
+    Principal Component Analysis, visualizes the data, creates k-Nearest Neighbors and Fixed-Radius Near Neighbors
+    Classifiers and fits them on the training set, tests the models on the testing set
 
-    Requires installation of 'pandas', 'matplotlib', 'scikit-learn'
+    Requires installation of 'pandas', 'scikit-learn', 'numpy', 'matplotlib'
 
 ## process_profile.py
 
@@ -244,6 +246,8 @@
     Main script of the project
 
     Transforms 'data.csv' and 'test_data.csv' using 'adjust_data.py'
-    Runs 'price_score.py', 'origin_weight_price.py', 'origin_profile.py', 'process_profile.py', 'process_score_price.py'
+    Runs 'price_score.py', 'origin_weight_score_price.py', 'origin_profile.py', 'process_weight_score_price.py',
+    'process_profile.py'
 
-    Requires installation of 'pandas', 'matplotlib', 'scikit-learn', 'nltk', 'scipy'
+    Requires installation of 'pandas', 'matplotlib', 'scikit-learn', 'nltk', 'scipy', 'numpy'
+
