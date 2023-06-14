@@ -4,6 +4,8 @@ data analysis / machine learning basics
 
 repository created for practicing data analysis and machine learning methods using an example of personal interest - green coffee
 
+supervised learning, classification and regression, natural language processing
+
 language: Python, libraries: Pandas, Matplotlib, Scikit-learn, Nltk, Scipy
 
 ## documentation
