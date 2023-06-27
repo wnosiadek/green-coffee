@@ -1,19 +1,19 @@
 """
 Main script of the project
 
-Transforms 'data.csv' and 'test_data.csv' using 'adjust_data.py'
+Transforms 'data.csv' and 'test_data.csv' using 'data.py'
 Runs 'price_score.py', 'origin_weight_score_price.py', 'origin_profile.py', 'process_weight_score_price.py', 
 'process_profile.py'
 
 Requires installation of 'pandas', 'matplotlib', 'scikit-learn', 'nltk', 'scipy', 'numpy'
 """
 
-import adjust_data
+import data
 
-# transform data files using 'adjust_data.py'
-adjust_data.adjust_data('data.csv')
-adjust_data.adjust_data('test_data.csv')
-adjust_data.drop_duplicates('adjusted_data.csv', 'adjusted_test_data.csv')
+# transform data files using 'data.py'
+data.adjust_data('data.csv')
+data.adjust_data('test_data.csv')
+data.drop_duplicates('adjusted_data.csv', 'adjusted_test_data.csv')
 
 import price_score
 
