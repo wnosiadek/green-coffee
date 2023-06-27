@@ -7,27 +7,15 @@ Complement Naive Bayes Classifiers and fits them on the training set, tests the 
 Requires installation of 'pandas', 'nltk', 'scipy', 'scikit-learn'
 """
 
-import pandas
-import adjust_data
+import data
 import origins
 import profiles
 from sklearn.naive_bayes import MultinomialNB, ComplementNB
 
 print('\nClassifying green coffee origin based on its sensory profile...')
 
-# read relevant training data from the adjusted file
-data = pandas.read_csv('adjusted_data.csv')
-train_profiles = data['Profile']
-train_origins = data['Coffee']
-# drop rows with missing values using 'adjust_data.py'
-train_profiles, train_origins = adjust_data.drop_missing(train_profiles, train_origins)
-
-# read relevant testing data from the adjusted file
-test_data = pandas.read_csv('adjusted_test_data.csv')
-test_profiles = test_data['Profile']
-test_origins = test_data['Coffee']
-# drop rows with missing values using 'adjust_data.py'
-test_profiles, test_origins = adjust_data.drop_missing(test_profiles, test_origins)
+# get relevant training and testing data using 'data.py'
+train_profiles, train_origins, test_profiles, test_origins = data.get_data('Profile', 'Coffee')
 
 # transform training and testing data using 'origins.py'
 # (simplify possible origins, take into account continents rather than countries, change alphabetical data into
