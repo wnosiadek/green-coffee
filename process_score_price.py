@@ -7,27 +7,15 @@ Neighbors Classifiers and fits them on the training set, tests the models on the
 Requires installation of 'pandas', 'matplotlib', 'scikit-learn'
 """
 
-import pandas
-import adjust_data
+import data
 import processes
 from matplotlib import pyplot
 from sklearn.neighbors import KNeighborsClassifier, RadiusNeighborsClassifier
 
 print('\nClassifying green coffee processing method based on its price and score...')
 
-# read relevant training data from the adjusted file
-data = pandas.read_csv('adjusted_data.csv')
-train_features = data[['Score', 'Price']]
-train_processes = data['Process']
-# drop rows with missing values using 'adjust_data.py'
-train_features, train_processes = adjust_data.drop_missing(train_features, train_processes)
-
-# read relevant testing data from the adjusted file
-test_data = pandas.read_csv('adjusted_test_data.csv')
-test_features = test_data[['Score', 'Price']]
-test_processes = test_data['Process']
-# drop rows with missing values using 'adjust_data.py'
-test_features, test_processes = adjust_data.drop_missing(test_features, test_processes)
+# get relevant training and testing data using 'data.py'
+train_features, train_processes, test_features, test_processes = data.get_data(['Score', 'Price'], 'Process')
 
 # transform training and testing data using 'processes.py'
 # (simplify processing method names to integer ids, print the mapping for reference)
