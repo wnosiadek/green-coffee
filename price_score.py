@@ -6,19 +6,14 @@ Creates a Linear Regression model for the data, visualizes the data and the resu
 Requires installation of 'pandas', 'matplotlib', 'scikit-learn'
 """
 
-import pandas
-import adjust_data
+import data
 from matplotlib import pyplot
 from sklearn.linear_model import LinearRegression
 
 print('\nInvestigating the dependence of green coffee price on its score...')
 
-# read relevant data from the adjusted file
-data = pandas.read_csv('adjusted_data.csv')
-score = data['Score']
-price = data['Price']
-# drop rows with missing values using 'adjust_data.py'
-score, price = adjust_data.drop_missing(score, price)
+# get relevant training and testing data using 'data.py'
+score, price = data.get_data('Score', 'Price', test=False)
 
 # plot the data
 pyplot.scatter(score, price)
