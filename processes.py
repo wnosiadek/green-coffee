@@ -10,7 +10,7 @@ simplify_processes
 """
 
 import pandas
-import adjust_data
+import data
 
 
 def simplify_processes(train_features: pandas.Series | pandas.DataFrame,
@@ -52,9 +52,9 @@ def simplify_processes(train_features: pandas.Series | pandas.DataFrame,
     # transform given data using the mapping
     train_processes = train_processes.map(processes_map)
     test_processes = test_processes.map(processes_map)
-    # drop any mistakes using 'adjust_data.py'
-    train_processes, train_features = adjust_data.drop_missing(train_processes, train_features)
-    test_processes, test_features = adjust_data.drop_missing(test_processes, test_features)
+    # drop any mistakes using 'data.py'
+    train_processes, train_features = data.drop_missing(train_processes, train_features)
+    test_processes, test_features = data.drop_missing(test_processes, test_features)
 
     # print the mapping for reference
     if print_map:
