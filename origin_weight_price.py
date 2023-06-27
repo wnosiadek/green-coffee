@@ -7,22 +7,15 @@ training set, visualizes the tree, tests the model on the testing set
 Requires installation of 'pandas', 'matplotlib', 'scikit-learn'
 """
 
-import pandas
+import data
 import origins
 from matplotlib import pyplot
 from sklearn.tree import DecisionTreeClassifier, plot_tree
 
 print('\nClassifying green coffee origin based on its price and weight...')
 
-# read relevant training data from the adjusted file
-data = pandas.read_csv('adjusted_data.csv')
-train_features = data[['Weight', 'Price']]
-train_origins = data['Coffee']
-
-# read relevant testing data from the adjusted file
-test_data = pandas.read_csv('adjusted_test_data.csv')
-test_features = test_data[['Weight', 'Price']]
-test_origins = test_data['Coffee']
+# get relevant training and testing data using 'data.py'
+train_features, train_origins, test_features, test_origins = data.get_data(['Weight', 'Price'], 'Coffee')
 
 # transform training and testing data using 'origins.py'
 # (simplify possible origins, take into account continents rather than countries, change alphabetical data into
