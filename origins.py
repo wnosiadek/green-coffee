@@ -14,7 +14,7 @@ For reference, print printable_origins_map (continent: continent_id dictionary)
 """
 
 import pandas
-import adjust_data
+import data
 
 # possible continents
 africa = ['Burundi', 'Cameroon', "Côte d'Ivoire", 'Democratic Republic of Congo', 'Ethiopia', 'Guinea', 'Kenya',
@@ -66,7 +66,7 @@ def simplify_origins(features: pandas.Series | pandas.DataFrame,
 
     # map countries to appropriate ids
     origins = origins.map(origins_map)
-    # drop any mistakes using 'adjust_data.py'
-    origins, features = adjust_data.drop_missing(origins, features)
+    # drop any mistakes using 'data.py'
+    origins, features = data.drop_missing(origins, features)
 
     return features, origins
