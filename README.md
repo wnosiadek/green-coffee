@@ -79,7 +79,7 @@ classifying green coffee processing method based on its sensory profile
 
 algorithms: Support Vector Classifier
 
-### main.py
+### main_pca.py
 
 main script of the project
 
