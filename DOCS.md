@@ -1,8 +1,8 @@
 # greencoffee project documentation
 
-## adjust_data.py
+## data.py
 
-    Module for adjusting data before or during analysis
+    Module for adjusting and acquiring data for further analysis
 
     Requires installation of 'pandas'
 
@@ -14,6 +14,8 @@
         Drops data present in the training set from the testing set, then overwrites the latter file
     drop_missing
         Removes rows with NaNs
+    get_data
+        Gets relevant data from the adjusted data file(s)
 
 ### adjust_data
 
@@ -69,6 +71,25 @@
     -------
     tuple[pandas.Series | pandas.DataFrame, pandas.Series | pandas.DataFrame]
         Input data without NaN-including rows
+
+### get_data
+
+    Gets relevant data from the adjusted data file(s)
+
+    Parameters
+    ----------
+    features_names: str | list[str]
+        Name(s) of column(s) containing the feature(s) of interest
+    target_name: str
+        Name of a column containing the target of interest
+    test: bool, default True
+        Whether to get testing data
+
+    Returns
+    -------
+    tuple[pandas.Series | pandas.DataFrame, pandas.Series] \
+    | tuple[pandas.Series | pandas.DataFrame, pandas.Series, pandas.Series | pandas.DataFrame, pandas.Series]
+        Training features and target, optionally testing features and target
 
 ## price_score.py
 
@@ -243,7 +264,7 @@
 
     Main script of the project
 
-    Transforms 'data.csv' and 'test_data.csv' using 'adjust_data.py'
+    Transforms 'data.csv' and 'test_data.csv' using 'data.py'
     Runs 'price_score.py', 'origin_weight_price.py', 'origin_profile.py', 'process_score_price.py', 'process_profile.py'
 
     Requires installation of 'pandas', 'matplotlib', 'scikit-learn', 'nltk', 'scipy'
