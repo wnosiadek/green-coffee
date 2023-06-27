@@ -1,5 +1,5 @@
 """
-Module for adjusting data before or during analysis
+Module for adjusting and acquiring data for further analysis
 
 Requires installation of 'pandas'
 
@@ -11,6 +11,8 @@ drop_duplicates
     Drops data present in the training set from the testing set, then overwrites the latter file
 drop_missing
     Removes rows with NaNs
+get_data
+    Gets relevant data from the adjusted data file(s)
 """
 
 import pandas
@@ -152,3 +154,48 @@ def drop_missing(data_to_check: pandas.Series | pandas.DataFrame,
     related_data = related_data.reset_index(drop=True)
 
     return data_to_check, related_data
+
+
+def get_data(features_names: str | list[str], target_name: str, test: bool = True) \
+        -> tuple[pandas.Series | pandas.DataFrame, pandas.Series] \
+        | tuple[pandas.Series | pandas.DataFrame, pandas.Series, pandas.Series | pandas.DataFrame, pandas.Series]:
+    """
+    Gets relevant data from the adjusted data file(s)
+
+    Parameters
+    ----------
+    features_names: str | list[str]
+        Name(s) of column(s) containing the feature(s) of interest
+    target_name: str
+        Name of a column containing the target of interest
+    test: bool, default True
+        Whether to get testing data
+
+    Returns
+    -------
+    tuple[pandas.Series | pandas.DataFrame, pandas.Series] \
+    | tuple[pandas.Series | pandas.DataFrame, pandas.Series, pandas.Series | pandas.DataFrame, pandas.Series]
+        Training features and target, optionally testing features and target
+    """
+
+    # read relevant training data from the adjusted file
+    data = pandas.read_csv('adjusted_data.csv')
+    train_features = data[features_names]
+    train_target = data[target_name]
+    # drop rows with missing values using drop_missing
+    train_features, train_target = drop_missing(train_features, train_target)
+
+    if test:
+
+        # read relevant testing data from the adjusted file
+        test_data = pandas.read_csv('adjusted_test_data.csv')
+        test_features = test_data[features_names]
+        test_target = test_data[target_name]
+        # drop rows with missing values using drop_missing
+        test_features, test_target = drop_missing(test_features, test_target)
+
+        return train_features, train_target, test_features, test_target
+
+    else:
+
+        return train_features, train_target
