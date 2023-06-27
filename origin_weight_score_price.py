@@ -8,8 +8,7 @@ visualizes the tree, tests the model on the testing set
 Requires installation of 'pandas', 'scikit-learn', 'numpy', 'matplotlib'
 """
 
-import pandas
-import adjust_data
+import data
 import origins
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.decomposition import PCA
@@ -19,19 +18,9 @@ from sklearn.tree import DecisionTreeClassifier, plot_tree
 
 print('\nClassifying green coffee origin based on its price, score and weight...')
 
-# read relevant training data from the adjusted file
-data = pandas.read_csv('adjusted_data.csv')
-train_features = data[['Weight', 'Score', 'Price']]
-train_origins = data['Coffee']
-# drop rows with missing values using 'adjust_data.py'
-train_features, train_origins = adjust_data.drop_missing(train_features, train_origins)
-
-# read relevant testing data from the adjusted file
-test_data = pandas.read_csv('adjusted_test_data.csv')
-test_features = test_data[['Weight', 'Score', 'Price']]
-test_origins = test_data['Coffee']
-# drop rows with missing values using 'adjust_data.py'
-test_features, test_origins = adjust_data.drop_missing(test_features, test_origins)
+# get relevant training and testing data using 'data.py'
+train_features, train_origins, test_features, test_origins \
+    = data.get_data(['Weight', 'Score', 'Price'], 'Coffee')
 
 # transform training and testing data using 'origins.py'
 # (simplify possible origins, take into account continents rather than countries, change alphabetical data into
