@@ -241,7 +241,7 @@
 
     Requires installation of 'pandas', 'nltk', 'scipy', 'scikit-learn'
 
-## main.py
+## main_pca.py
 
     Main script of the project
 
