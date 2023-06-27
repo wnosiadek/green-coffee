@@ -16,7 +16,7 @@ basic version
 
 ### main_pca
 
-\+ dimensionality reduction
+\+ preprocessing, dimensionality reduction
 
 ## documentation
 
@@ -31,9 +31,9 @@ basic version
 
 ## scripts and modules
 
-### adjust_data.py
+### data.py
 
-adjusting data before or during analysis
+adjusting and acquiring data for further analysis
 
 ### price_score.py
 
