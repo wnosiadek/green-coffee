@@ -7,27 +7,15 @@ Classifier and fits it on the training set, tests the model on the testing set
 Requires installation of 'pandas', 'nltk', 'scipy', 'scikit-learn'
 """
 
-import pandas
-import adjust_data
+import data
 import processes
 import profiles
 from sklearn.svm import SVC
 
 print('\nClassifying green coffee processing method based on its sensory profile...')
 
-# read relevant training data from the adjusted file
-data = pandas.read_csv('adjusted_data.csv')
-train_profiles = data['Profile']
-train_processes = data['Process']
-# drop rows with missing values using 'adjust_data.py'
-train_profiles, train_processes = adjust_data.drop_missing(train_profiles, train_processes)
-
-# read relevant testing data from the adjusted file
-test_data = pandas.read_csv('adjusted_test_data.csv')
-test_profiles = test_data['Profile']
-test_processes = test_data['Process']
-# drop rows with missing values using 'adjust_data.py'
-test_profiles, test_processes = adjust_data.drop_missing(test_profiles, test_processes)
+# get relevant training and testing data using 'data.py'
+train_profiles, train_processes, test_profiles, test_processes = data.get_data('Profile', 'Process')
 
 # transform training and testing data using 'processes.py'
 # (simplify processing method names to integer ids, print the mapping for reference)
