@@ -4,7 +4,7 @@ data analysis / machine learning basics
 
 repository created for practicing data analysis and machine learning methods using an example of personal interest - green coffee
 
-supervised learning, classification and regression, natural language processing, dimensionality reduction
+supervised learning, classification and regression, natural language processing, preprocessing, dimensionality reduction
 
 language: Python, libraries: Pandas, Matplotlib, Scikit-learn, Nltk, Scipy, Numpy
 
@@ -16,7 +16,7 @@ basic version
 
 ### main_pca
 
-\+ dimensionality reduction
+\+ preprocessing, dimensionality reduction
 
 ## documentation
 
@@ -31,9 +31,9 @@ basic version
 
 ## scripts and modules
 
-### adjust_data.py
+### data.py
 
-adjusting data before or during analysis
+adjusting and acquiring data for further analysis
 
 ### price_score.py
 
